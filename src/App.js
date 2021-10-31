@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import './css/App.css';
+import Choice from "./components/choice";
+import { useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Answer from "./components/answer";
 
 function App() {
+
+  const [choice, setChoice] = useState('')
+  const [opts, setOpts] = useState([])
+  const [popQuestion, setPop] = useState([])
+
+  function saveOpt(data) {
+    setOpts(data)
+  }
+
+  function saveQ(q) {
+    setChoice(q)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <h1>Choice Maker App</h1>
+          <Switch>
+            <Route exact path='/'>
+              <Choice handleQuest={saveQ} handleOption={saveOpt} />
+            </Route>
+            <Route path='/answer'>
+              <Answer question={choice} options={opts} />
+            </Route>
+          </Switch>
+        </header>
+      </div>
+    </Router>
   );
 }
 
