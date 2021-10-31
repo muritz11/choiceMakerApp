@@ -29,6 +29,16 @@ export default function Choice(props) {
 
             props.handleQuest(question)
 
+            //first check if local storage is empty
+            if (localStorage.getItem("popQuestion") !== "") {
+                let popArr = [question]
+                localStorage.setItem("popQuestion", JSON.stringify(popArr))
+            } else {
+                let popArr = localStorage.getItem("popQuestion")
+                localStorage.setItem("popQuestion", JSON.stringify())
+            }
+
+
             let arr = [];
             arr.push(opt1)
             arr.push(opt2)
@@ -97,6 +107,13 @@ export default function Choice(props) {
                     &gt;
                 </Link>
             </form>
+
+            { props.popQ && 
+            <div>
+                <h3>Popular Questions</h3>
+                {props.popQ}
+            </div> 
+            }
         </div>
     )
 }

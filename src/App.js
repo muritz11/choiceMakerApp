@@ -1,6 +1,6 @@
 import './css/App.css';
 import Choice from "./components/choice";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Answer from "./components/answer";
 
@@ -10,6 +10,10 @@ function App() {
   const [opts, setOpts] = useState([])
   const [popQuestion, setPop] = useState([])
 
+  useEffect(() => {
+    setPop(localStorage.getItem('popQuestion'))
+  }, [])
+
   function saveOpt(data) {
     setOpts(data)
   }
@@ -18,6 +22,7 @@ function App() {
     setChoice(q)
   }
 
+
   return (
     <Router>
       <div className="App">
@@ -25,7 +30,7 @@ function App() {
           <h1>Choice Maker App</h1>
           <Switch>
             <Route exact path='/'>
-              <Choice handleQuest={saveQ} handleOption={saveOpt} />
+              <Choice handleQuest={saveQ} handleOption={saveOpt} popQ={popQuestion} handlePop={setPop} />
             </Route>
             <Route path='/answer'>
               <Answer question={choice} options={opts} />
