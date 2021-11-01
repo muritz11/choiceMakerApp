@@ -1,6 +1,7 @@
 import Question from './mini/questionInput';
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import PopList from './mini/popularList';
 
 
 export default function Choice(props) {
@@ -30,12 +31,14 @@ export default function Choice(props) {
             props.handleQuest(question)
 
             //first check if local storage is empty
-            if (localStorage.getItem("popQuestion") !== "") {
-                let popArr = [question]
-                localStorage.setItem("popQuestion", JSON.stringify(popArr))
+            //let popItem = localStorage.getItem("popQuestion")
+            if (props.popQ) {
+                props.handlePop([...props.popQ, question])
+                // let popItem = [...props.popQ, question]
+                // localStorage.setItem("popQuestion", JSON.stringify(popItem))
             } else {
-                let popArr = localStorage.getItem("popQuestion")
-                localStorage.setItem("popQuestion", JSON.stringify())
+                // localStorage.setItem("popQuestion", JSON.stringify([question]))
+                props.handlePop([question])
             }
 
 
@@ -60,8 +63,12 @@ export default function Choice(props) {
             setErr('Question, option 1 and option 2 fields are required')
             setTimeout(() => {
                 setErr(false)
-            }, 3000);
+            }, 5000);
         }
+    }
+
+    function handlePopClick(e) {
+        setQuestion(e.target.innerHTML)
     }
 
     
@@ -88,8 +95,6 @@ export default function Choice(props) {
             break;
         }
     }
-
-
   
 
     return (
@@ -104,14 +109,14 @@ export default function Choice(props) {
                 </div>
                 { err && <p className='red'>{ err }</p> }
                 <Link to='/answer' onClick={handleSave} className='btn'>
-                    &gt;
+                    <span>&gt;</span>
                 </Link>
             </form>
 
             { props.popQ && 
             <div>
                 <h3>Popular Questions</h3>
-                {props.popQ}
+                <PopList data={props.popQ} clickFunc={handlePopClick} />
             </div> 
             }
         </div>

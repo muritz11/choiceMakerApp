@@ -1,6 +1,6 @@
 import './css/App.css';
 import Choice from "./components/choice";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Answer from "./components/answer";
 
@@ -10,9 +10,9 @@ function App() {
   const [opts, setOpts] = useState([])
   const [popQuestion, setPop] = useState([])
 
-  useEffect(() => {
-    setPop(localStorage.getItem('popQuestion'))
-  }, [])
+  // useEffect(() => {
+  //   setPop(JSON.parse(localStorage.getItem("popQuestion")))
+  // }, [popQuestion])
 
   function saveOpt(data) {
     setOpts(data)

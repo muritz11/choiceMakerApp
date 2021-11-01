@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function Answer(props) {
@@ -8,6 +8,12 @@ export default function Answer(props) {
     function random(){
         setIndex(Math.floor(Math.random() * props.options.length))
     }
+
+    
+  useEffect(() => {
+    random()
+  })
+
 
     const ans = props.options[index]
 

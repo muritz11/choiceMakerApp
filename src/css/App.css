@@ -53,10 +53,11 @@ body::after{
   font-size: calc(10px + 2vmin);
   color: white;
   padding: 20px;
+  padding-top: 60px;
   background: rgba(255, 255, 255, 0.1);
   height: 500px;
   width: 75%;
-  overflow: hidden;
+  overflow: auto;
   border-radius: 15px;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-left: 1px solid rgba(255, 255, 255, 0.5);
@@ -101,7 +102,7 @@ input {
 }
 
 .btn{
-  background: #5AC979;
+  background: #e25822;
   padding: 15px;
   border: none;
   color: white;
@@ -110,11 +111,17 @@ input {
   top: 50%;
   right: 10px;
   font-size: 1.1em;
-  opacity: .7;
+}
+
+.btn span{
+  transition: .5s ease;
+  animation-name: float;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
 }
 
 .btn:hover {
-  opacity: 1;
+  background: #f84803;
 }
 
 .another-ans, .another-ans a{
@@ -132,4 +139,28 @@ input {
 
 .red{
   color: tomato;
+}
+
+.pop-list li{
+  list-style-type: none;
+  color: #5D96B0;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+@keyframes float {
+  0% {
+    transform: translateX(0);
+  }
+  
+  25% {
+    transform: translateX(10px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  0% {
+    transform: translateX(-10px);
+  }
+
 }
