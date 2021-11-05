@@ -26,7 +26,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <header className="App-header">
+        <div className="App-header">
           <h1>Choice Maker App</h1>
           <Switch>
             <Route exact path='/'>
@@ -36,7 +36,7 @@ function App() {
               <Answer question={choice} options={opts} />
             </Route>
           </Switch>
-        </header>
+        </div>
       </div>
     </Router>
   );

@@ -14,6 +14,7 @@ export default function Choice(props) {
     const [err, setErr] = useState(false)
   
     function handleQuestion(e) {
+        
         switch (e.target.id) {
             case 'question':
             setQuestion(e.target.value);
@@ -93,23 +94,23 @@ export default function Choice(props) {
             default:
             alert('sorry, unknown field');
             break;
-        }
+        }        
     }
   
 
     return (
-        <div>
+        <div className='choice'>
+            { err && <p className='red'>{ err }</p> }
             <form>
                 <Question val={question} change={handleQuestion} />
                 <div className='options'>
-                    <input name='opt1' placeholder='Enter option 1*' onChange={handleOpt} value={opt1} type='text' />
-                    <input name='opt2' placeholder='Enter option 2*' onChange={handleOpt} value={opt2} type='text' />
-                    <input name='opt3' placeholder='Enter option 3' onChange={handleOpt} value={opt3} type='text' />
-                    <input name='opt4' placeholder='Enter option 4' onChange={handleOpt} value={opt4} type='text' />
+                    <input name='opt1' placeholder="What's your first option?" onChange={handleOpt} value={opt1} type='text' />
+                    <input name='opt2' placeholder="What's the second option?*" onChange={handleOpt} value={opt2} type='text' />
+                    <input name='opt3' placeholder='Any other option?' onChange={handleOpt} value={opt3} type='text' />
+                    <input name='opt4' placeholder='Any other option?' onChange={handleOpt} value={opt4} type='text' />
                 </div>
-                { err && <p className='red'>{ err }</p> }
                 <Link to='/answer' onClick={handleSave} className='btn'>
-                    <span>&gt;</span>
+                    <span>&#9655;</span>
                 </Link>
             </form>
 

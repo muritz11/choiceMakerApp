@@ -65,12 +65,19 @@ body::after{
   z-index: 1000;
 }
 
+.choice{
+  animation-name: slideUp;
+  animation-duration: 1s;
+}
+
 .App-header h1{
   margin-bottom: 50px;
 }
 
 .ans{
-  color: #ccc;
+  color: #eee;
+  animation-name: slideRight;
+  animation-duration: 1s;
 }
 
 .ans h3{
@@ -102,7 +109,7 @@ input {
 }
 
 .btn{
-  background: #e25822;
+  background: #577074;
   padding: 15px;
   border: none;
   color: white;
@@ -111,17 +118,9 @@ input {
   top: 50%;
   right: 10px;
   font-size: 1.1em;
-}
-
-.btn span{
-  transition: .5s ease;
-  animation-name: float;
-  animation-duration: 1s;
+  animation-name: swell;
+  animation-duration: 1.8s;
   animation-iteration-count: infinite;
-}
-
-.btn:hover {
-  background: #f84803;
 }
 
 .another-ans, .another-ans a{
@@ -148,19 +147,62 @@ input {
   font-weight: bold;
 }
 
-@keyframes float {
+@keyframes swell {
   0% {
-    transform: translateX(0);
+    transform: scale(1);
   }
   
   25% {
-    transform: translateX(10px);
+    transform: scale(1.1);
   }
   50% {
-    transform: translateX(0);
+    transform: scale(0.9);
   }
   0% {
-    transform: translateX(-10px);
+    transform: scale(1);
   }
 
 }
+
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100px);
+    opacity: .5;
+  }
+
+  to{
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+@keyframes slideRight {
+  from {
+    transform: translateX(100px);
+    opacity: .5;
+  }
+
+  to{
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+  
+  @media screen and (max-width: 400px) {
+    .App-header{
+      padding-top: 100px;
+      width: 85%;
+    }
+  
+    .question{
+      width: 100%;
+    }
+
+    .btn{
+      right: -10px;
+    }
+  }

@@ -19,7 +19,7 @@ export default function Answer(props) {
 
     return (
         <div className='ans'>
-            <h2>{props.question}?</h2>
+            <h2><i>{props.question}?</i></h2>
             <h3>You should: {ans}</h3>
 
             <button className='another-ans' onClick={() => random()}>Get another answer</button><br />
